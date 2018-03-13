@@ -1,14 +1,14 @@
 {
-  "name": "react-scripts-ts",
-  "version": "2.13.0",
-  "description": "Configuration and scripts for Create React App.",
-  "repository": "wmonk/create-react-app",
+  "name": "alt-react-scripts-ts",
+  "version": "2.13.6",
+  "description": "Custom configuration of Create React App, with typescript, SASS and CSS Modules.",
+  "repository": "npaulo/create-react-app-typescript",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=6"
   },
   "bugs": {
-    "url": "https://github.com/wmonk/create-react-app/issues"
+    "url": "https://github.com/npaulo/create-react-app-typescript/issues"
   },
   "files": [
     "bin",

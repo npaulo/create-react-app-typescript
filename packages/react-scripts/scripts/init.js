@@ -40,9 +40,9 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
-    start: 'react-scripts-ts start',
-    build: 'react-scripts-ts build',
-    test: 'react-scripts-ts test --env=jsdom',
+    start: 'node scripts/customized-config start',
+    build: 'node scripts/customized-config build',
+    test: 'node scripts/customized-config test --env=jsdom',
     eject: 'react-scripts-ts eject',
   };
 
@@ -110,6 +110,15 @@ module.exports = function(
     '@types/react-dom',
     '@types/jest',
     'typescript',
+
+    'node-sass',
+    'sass-loader',
+    'react-toolbox',
+    'react-bootstrap',
+
+    // inject webpack config
+    'rewire',
+    'proxyquire'
   ];
 
   console.log(
