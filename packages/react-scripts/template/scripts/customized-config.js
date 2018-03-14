@@ -30,7 +30,7 @@ switch (process.argv[2]) {
         let customizer = loadCustomizer('../webpack.config-overrides.tests');
         proxyquire('alt-lib-react-scripts-ts/scripts/test.js', {
             // When test.js asks for '../utils/createJestConfig' it will get this instead:
-            '../utils/createJestConfig': (...args) => {
+            'utils/createJestConfig': (...args) => {
                 // Use the existing createJestConfig function to create a config, then pass
                 // it through the customizer
                 var createJestConfig = require('alt-lib-react-scripts-ts/utils/createJestConfig');
