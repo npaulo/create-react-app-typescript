@@ -115,6 +115,8 @@ module.exports = function(
     'sass-loader',
     'react-toolbox',
     'react-bootstrap',
+    'enzyme',
+    'enzyme-adapter-react-16',
 
     // inject webpack config
     'rewire',
