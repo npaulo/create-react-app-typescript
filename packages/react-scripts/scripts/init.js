@@ -51,7 +51,7 @@ module.exports = function(
     'eject': 'react-scripts-ts eject',
     'build-lib': 'tsc && npm run copy-styles-to-lib',
     'copy-styles-to-lib': 'cpx \"./src/**/*.scss\" ./build/lib/',
-    'styleguide': 'styleguide server',
+    'styleguide': 'styleguidist server',
     'styleguide-build': 'styleguidist build'
   };
 
