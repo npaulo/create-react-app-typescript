@@ -127,6 +127,8 @@ module.exports = function(
     'cpx',
     'react-styleguidist',
     'react-docgen-typescript',
+    'enzyme',
+    'enzyme-adapter-react-16',
 
     // inject webpack config
     'rewire',
