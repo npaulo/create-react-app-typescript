@@ -17,23 +17,23 @@ var proxyquire = require('proxyquire');
 switch (process.argv[2]) {
     // The "start" script is run during development mode
     case 'start':
-        rewireModule('alt-react-scripts-ts/scripts/start.js', loadCustomizer('../webpack.config-overrides.dev'));
+        rewireModule('alt-lib-react-scripts-ts/scripts/start.js', loadCustomizer('../webpack.config-overrides.dev'));
         break;
     // The "build" script is run to produce a production bundle
     case 'build':
-        rewireModule('alt-react-scripts-ts/scripts/build.js', loadCustomizer('../webpack.config-overrides.prod'));
+        rewireModule('alt-lib-react-scripts-ts/scripts/build.js', loadCustomizer('../webpack.config-overrides.prod'));
         break;
     // The "test" script runs all the tests with Jest
     case 'test':
         // Load customizations from the config-overrides.testing file.
         // That file should export a single function that takes a config and returns a config
         let customizer = loadCustomizer('../webpack.config-overrides.tests');
-        proxyquire('alt-react-scripts-ts/scripts/test.js', {
+        proxyquire('alt-lib-react-scripts-ts/scripts/test.js', {
             // When test.js asks for '../utils/createJestConfig' it will get this instead:
             '../utils/createJestConfig': (...args) => {
                 // Use the existing createJestConfig function to create a config, then pass
                 // it through the customizer
-                var createJestConfig = require('alt-react-scripts-ts/utils/createJestConfig');
+                var createJestConfig = require('alt-lib-react-scripts-ts/utils/createJestConfig');
                 return customizer(createJestConfig(...args));
             }
         });

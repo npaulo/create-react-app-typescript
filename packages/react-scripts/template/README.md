@@ -8,6 +8,7 @@ Customization:
 + SASS
 + React Toolbox
 + Webpack custom configurations
++ React components lib
 
 ## Table of Contents
 

@@ -38,12 +38,21 @@ module.exports = function(
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {};
 
+  // lib config
+  appPackage.main = 'build/lib/components/index.js',
+  appPackage.types = 'build/lib/components/index.d.ts',
+  appPackage.files = ['build/lib'];
+  
   // Setup the script rules
   appPackage.scripts = {
-    start: 'node scripts/customized-config start',
-    build: 'node scripts/customized-config build',
-    test: 'node scripts/customized-config test --env=jsdom',
-    eject: 'react-scripts-ts eject',
+    'start': 'node scripts/customized-config start',
+    'build': 'node scripts/customized-config build',
+    'test': 'node scripts/customized-config test --env=jsdom',
+    'eject': 'react-scripts-ts eject',
+    'build-lib': 'tsc && npm run copy-styles-to-lib',
+    'copy-styles-to-lib': 'cpx \"./src/**/*.scss\" ./build/lib/',
+    'styleguide': 'styleguide server',
+    'styleguide-build': 'styleguidist build'
   };
 
   fs.writeFileSync(
@@ -115,6 +124,9 @@ module.exports = function(
     'sass-loader',
     'react-toolbox',
     'react-bootstrap',
+    'cpx',
+    'react-styleguidist',
+    'react-docgen-typescript',
 
     // inject webpack config
     'rewire',
