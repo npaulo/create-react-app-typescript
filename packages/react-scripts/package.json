@@ -1,6 +1,6 @@
 {
   "name": "alt-lib-react-scripts-ts",
-  "version": "2.13.11",
+  "version": "2.13.12",
   "description": "Custom configuration of Create React App, with typescript, SASS and CSS Modules.",
   "repository": "npaulo/create-react-app-typescript",
   "license": "BSD-3-Clause",

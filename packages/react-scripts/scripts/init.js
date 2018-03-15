@@ -49,8 +49,9 @@ module.exports = function(
     'build': 'node scripts/customized-config build',
     'test': 'node scripts/customized-config test --env=jsdom',
     'eject': 'react-scripts-ts eject',
-    'build-lib': 'tsc && npm run copy-styles-to-lib',
-    'copy-styles-to-lib': 'cpx \"./src/**/*.scss\" ./build/lib/',
+    'build-lib': 'tsc && npm run copy-scss-to-lib && npm run copy-css-to-lib',
+    'copy-scss-to-lib': 'cpx \"./src/**/*.scss\" ./build/lib/',
+    'copy-css-to-lib': 'cpx \"./src/**/*.css\" ./build/lib/',
     'styleguide': 'styleguidist server',
     'styleguide-build': 'styleguidist build'
   };
