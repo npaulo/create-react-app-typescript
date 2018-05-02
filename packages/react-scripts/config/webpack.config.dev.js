@@ -183,7 +183,7 @@ module.exports = {
               },
             ],
           },
-          
+
           // CSS Modules (React ToolBox)
           {
             test: /\.css$/,
@@ -220,7 +220,7 @@ module.exports = {
               },
             ],
           },
-          
+
           // SASS
           {
             test: /\.scss$/,
