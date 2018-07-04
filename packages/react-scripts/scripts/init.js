@@ -38,22 +38,12 @@ module.exports = function(
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {};
 
-  // lib config
-  appPackage.main = 'build/lib/components/index.js',
-  appPackage.types = 'build/lib/components/index.d.ts',
-  appPackage.files = ['build/lib'];
-  
   // Setup the script rules
   appPackage.scripts = {
-    'start': 'node scripts/customized-config start',
-    'build': 'node scripts/customized-config build',
-    'test': 'node scripts/customized-config test --env=jsdom',
-    'eject': 'react-scripts-ts eject',
-    'build-lib': 'tsc && npm run copy-scss-to-lib && npm run copy-css-to-lib',
-    'copy-scss-to-lib': 'cpx \"./src/**/*.scss\" ./build/lib/',
-    'copy-css-to-lib': 'cpx \"./src/**/*.css\" ./build/lib/',
-    'styleguide': 'styleguidist server',
-    'styleguide-build': 'styleguidist build'
+    start: 'node scripts/customized-config start',
+    build: 'node scripts/customized-config build',
+    test: 'node scripts/customized-config test --env=jsdom',
+    eject: 'react-scripts-ts eject',
   };
 
   fs.writeFileSync(
@@ -125,9 +115,6 @@ module.exports = function(
     'sass-loader',
     'react-toolbox',
     'react-bootstrap',
-    'cpx',
-    'react-styleguidist',
-    'react-docgen-typescript',
     'enzyme',
     'enzyme-adapter-react-16',
 
