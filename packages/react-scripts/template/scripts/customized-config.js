@@ -33,7 +33,7 @@ switch (process.argv[2]) {
             'utils/createJestConfig': (...args) => {
                 // Use the existing createJestConfig function to create a config, then pass
                 // it through the customizer
-                var createJestConfig = require('alt-lib-react-scripts-ts/utils/createJestConfig');
+                var createJestConfig = require('alt-lib-react-scripts-ts/scripts/utils/createJestConfig');
                 return customizer(createJestConfig(...args));
             }
         });
