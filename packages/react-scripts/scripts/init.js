@@ -113,6 +113,8 @@ module.exports = function(
 
     'node-sass',
     'sass-loader',
+    'postcss-import',
+    'postcss-cssnext',
     'react-toolbox',
     'react-bootstrap',
     'enzyme',
