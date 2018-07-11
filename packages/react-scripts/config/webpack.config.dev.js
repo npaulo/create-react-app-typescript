@@ -8,6 +8,7 @@
 // @remove-on-eject-end
 'use strict';
 
+const fs = require('fs');
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
@@ -20,6 +21,17 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
+/* load cssnext options*/
+const loadCssNextOptions = () => {
+  const cssNextOptionsPath = path.resolve(paths.appPath, 'cssnext.options.js');
+  if (!fs.existsSync(cssNextOptionsPath)) {
+    return {};
+  }
+
+  const cssNextOptions = require(cssNextOptionsPath)
+  return cssNextOptions;
+};
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -205,8 +217,7 @@ module.exports = {
                   // https://github.com/facebookincubator/create-react-app/issues/2677
                   ident: 'postcss',
                   plugins: () => [
-                    require('postcss-import'),
-                    require('postcss-cssnext'),
+                    require('postcss-cssnext')(loadCssNextOptions()),
                     require('postcss-flexbugs-fixes'),
                     autoprefixer({
                       browsers: [

@@ -8,6 +8,7 @@
 // @remove-on-eject-end
 'use strict';
 
+const fs = require('fs');
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
@@ -22,6 +23,17 @@ const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+/* load cssnext options*/
+const loadCssNextOptions = () => {
+  const cssNextOptionsPath = path.resolve(paths.appPath, 'cssnext.options.js');
+  if (!fs.existsSync(cssNextOptionsPath)) {
+    return {};
+  }
+
+  const cssNextOptions = require(cssNextOptionsPath)
+  return cssNextOptions;
+};
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -229,8 +241,7 @@ module.exports = {
                         // https://github.com/facebookincubator/create-react-app/issues/2677
                         ident: 'postcss',
                         plugins: () => [
-                          require('postcss-import'),
-                          require('postcss-cssnext'),
+                          require('postcss-cssnext')(loadCssNextOptions()),
                           require('postcss-flexbugs-fixes'),
                           autoprefixer({
                             browsers: [
@@ -275,29 +286,7 @@ module.exports = {
                     },
                     {
                       loader: require.resolve('sass-loader'),
-                    },
-                    {
-                      loader: require.resolve('postcss-loader'),
-                      options: {
-                        // Necessary for external CSS imports to work
-                        // https://github.com/facebookincubator/create-react-app/issues/2677
-                        ident: 'postcss',
-                        plugins: () => [
-                          require('postcss-import'),
-                          require('postcss-cssnext'),
-                          require('postcss-flexbugs-fixes'),
-                          autoprefixer({
-                            browsers: [
-                              '>1%',
-                              'last 4 versions',
-                              'Firefox ESR',
-                              'not ie < 9', // React doesn't support IE8 anyway
-                            ],
-                            flexbox: 'no-2009',
-                          }),
-                        ],
-                      },
-                    },
+                    }
                   ],
                 },
                 extractTextPluginOptions
