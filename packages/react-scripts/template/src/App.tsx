@@ -2,7 +2,7 @@ import * as React from 'react';
 import './App.scss';
 import HelloWorld from './components/HelloWorld';
 
-import logo from './logo.svg';
+const logo = require('./logo.svg');
 
 class App extends React.Component {
   public render() {

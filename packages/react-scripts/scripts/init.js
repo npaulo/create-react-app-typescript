@@ -40,10 +40,19 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
-    start: 'node scripts/customized-config start',
-    build: 'node scripts/customized-config build',
+    start: 'npm-run-all lint start:js',
+    'start:js': 'node scripts/customized-config start',
+    build: 'npm-run-all lint build:clean build:tsc build:scss build:css',
+    'build:js': 'node scripts/customized-config build',
+    'build:tsc': 'tsc',
+    'build:css': 'cpx "./src/components/**/*.css" ./lib/',
+    'build:scss': 'cpx "./src/components/**/*.scss" ./lib/',
+    'build:clean': 'rimraf ./lib',
     test: 'node scripts/customized-config test --env=jsdom',
+    lint: 'tslint -p ./ -c ./tslint.json',
     eject: 'react-scripts-ts eject',
+    storybook: 'start-storybook -p 6006 -s ./public',
+    'storybook:build': 'build-storybook'
   };
 
   fs.writeFileSync(
@@ -119,10 +128,28 @@ module.exports = function(
     'react-bootstrap',
     'enzyme',
     'enzyme-adapter-react-16',
+    '@types/enzyme',
 
     // inject webpack config
     'rewire',
-    'proxyquire'
+    'proxyquire',
+
+    // storybook
+    '@storybook/react',
+    '@storybook/addon-actions',
+    '@storybook/addon-centered',
+    '@storybook/addon-links',
+    '@storybook/addons',
+    '@types/storybook__react',
+    '@types/storybook__addon-actions',
+    '@types/storybook__addon-links',
+    'babel-core',
+
+    // other 
+    'tslint',
+    'npm-run-all',
+    'rimraf',
+    'cpx'
   ];
 
   console.log(
