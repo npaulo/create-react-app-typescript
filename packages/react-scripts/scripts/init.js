@@ -42,16 +42,19 @@ module.exports = function(
   appPackage.scripts = {
     start: 'npm-run-all lint start:js',
     'start:js': 'node scripts/customized-config start',
-    build: 'npm-run-all lint build:clean build:tsc build:scss build:css',
+    build: 'npm-run-all lint build:clean build:tsc build:scss build:css build:svg build:copy build:clean:temp',
     'build:js': 'node scripts/customized-config build',
     'build:tsc': 'tsc',
     'build:css': 'cpx "./src/components/**/*.css" ./lib/',
     'build:scss': 'cpx "./src/components/**/*.scss" ./lib/',
+    'build:svg': 'cpx "./src/components/**/*.svg" ./lib/',
     'build:clean': 'rimraf ./lib',
+    'build:copy': 'cpx "./temp/components/**/*" ./lib/',
+    'build:clean:temp': 'rimraf ./temp',
     test: 'node scripts/customized-config test --env=jsdom',
     lint: 'tslint -p ./ -c ./tslint.json',
     eject: 'react-scripts-ts eject',
-    storybook: 'start-storybook -p 6006 -s ./public',
+    storybook: 'start-storybook -p 6006 -s public',
     'storybook:build': 'build-storybook'
   };
 
