@@ -1,24 +1,41 @@
 const path = require('path');
 const testCssRule = "" + /\.css$/;
 const testCssLoaderRx = /\bcss-loader\b/
+const testPostCssLoaderRx = /\bpostcss-loader\b/
 
 module.exports = (baseConfig, env, config) => {
+
 
     // add alias
     config.resolve = config.resolve || {}
     config.resolve.alias = config.resolve.alias || {};
     config.resolve.alias["@node_modules"] = path.resolve(__dirname, "../node_modules");
+    config.resolve.alias["@src"] = path.resolve(__dirname, "../src/components");
 
     // CSS MODLUDES
-    let cssRule = config.module.rules.find((r) => "" + r.test == testCssRule);
+    const cssRule = config.module.rules.find((r) => "" + r.test == testCssRule);
     if (cssRule) {
-        let cssModules = cssRule.use.find((l) => testCssLoaderRx.test(l.loader));
-        if (cssModules) {
-            cssModules.options = cssModules.options || {};
-            cssModules.options.modules = true;
-            cssModules.options.sourceMap = true;
-            cssModules.options.importLoaders = 1;
-            cssModules.options.localIdentName = "[name]--[local]--[hash:base64:8]"
+        const cssLoader = cssRule.use.find((l) => testCssLoaderRx.test(l.loader));
+        if (cssLoader) {
+            cssLoader.options = cssLoader.options || {};
+            cssLoader.options.modules = true;
+            cssLoader.options.sourceMap = true;
+            cssLoader.options.importLoaders = 1;
+            cssLoader.options.localIdentName = "[name]--[local]--[hash:base64:8]"
+        }
+
+        const postCssLoader = cssRule.use.find((l) => testPostCssLoaderRx.test(l.loader));
+        if (postCssLoader) {
+            postCssLoader.options = postCssLoader.options || {};
+            postCssLoader.options.plugins = () => [
+                require('postcss-cssnext')({
+                    features: {
+                        customProperties: {
+                            variables: { 'color-primary': '#317dba' },
+                        },
+                    },
+                })
+            ];
         }
     }
 
@@ -37,7 +54,7 @@ module.exports = (baseConfig, env, config) => {
     config.module.rules.push({
         test: /\.scss$/,
         loaders: ["style-loader", "css-loader", "sass-loader"],
-        include: path.resolve(__dirname, '../')
+        include: path.resolve(__dirname, '../src')
     });
 
     return config;

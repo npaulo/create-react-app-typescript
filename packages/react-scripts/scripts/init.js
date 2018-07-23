@@ -147,6 +147,7 @@ module.exports = function(
     '@types/storybook__addon-actions',
     '@types/storybook__addon-links',
     'babel-core',
+    'postcss-cssnext',
 
     // other 
     'tslint',

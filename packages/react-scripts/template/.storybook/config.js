@@ -1,5 +1,3 @@
-import * as react from 'react';
-import { AltitudeCSS } from './decorators/altitudecss';
 import { configure, addDecorator } from '@storybook/react';
 import centered from '@storybook/addon-centered';
 
@@ -10,6 +8,5 @@ function loadStories() {
 }
 
 addDecorator(centered);
-addDecorator(AltitudeCSS);
 
 configure(loadStories, module);
