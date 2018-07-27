@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './App.scss';
+import './app.scss';
 import HelloWorld from './components/HelloWorld';
 
 const logo = require('./logo.svg');
