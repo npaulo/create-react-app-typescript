@@ -118,6 +118,7 @@ module.exports = function(
     'react-bootstrap',
     'enzyme',
     'enzyme-adapter-react-16',
+    'typesafe-actions',
 
     // inject webpack config
     'rewire',
