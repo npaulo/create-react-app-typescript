@@ -45,6 +45,7 @@ module.exports = function(
     build: 'npm-run-all lint build:js',
     'build:js': 'node scripts/customized-config build',
     test: 'node scripts/customized-config test --env=jsdom',
+    lint: 'tslint -p ./ -c ./tslint.json',
     eject: 'react-scripts-ts eject',
     'storybook': 'start-storybook -p 6006 -s public',
     'storybook:build': 'build-storybook -s public',

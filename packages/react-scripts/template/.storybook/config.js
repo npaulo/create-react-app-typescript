@@ -8,10 +8,10 @@ addDecorator(CenterDecorator);
 
 // storybook options
 setOptions({
-    name: 'UX-ToolKit',
+    name: 'StoryBook',
     sidebarAnimations: true,
     showAddonPanel: false,
-    
+
 });
 
 // withHelp options
@@ -22,11 +22,9 @@ setDefaults({
     inline: true
 });
 
-const reqStories = require.context('../stories/', true, /.tsx$/);
 const reqSrc = require.context('../src/', true, /.stories.tsx$/);
 
 function loadStories() {
-    reqStories.keys().forEach((filename) => reqStories(filename));
     reqSrc.keys().forEach((filename) => reqSrc(filename));
 }
 
