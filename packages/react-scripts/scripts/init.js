@@ -135,7 +135,7 @@ module.exports = function(
     'cpx',
 
     // storybook
-    'storybook/addon-actions',
+    '@storybook/addon-actions',
     '@storybook/addon-centered',
     '@storybook/addon-info',
     '@storybook/addon-links',
