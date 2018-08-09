@@ -40,10 +40,14 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
-    start: 'node scripts/customized-config start',
-    build: 'node scripts/customized-config build',
+    start: 'npm-run-all lint start:js',
+    'start:js': 'node scripts/customized-config start',
+    build: 'npm-run-all lint build:js',
+    'build:js': 'node scripts/customized-config build',
     test: 'node scripts/customized-config test --env=jsdom',
     eject: 'react-scripts-ts eject',
+    'storybook': 'start-storybook -p 6006 -s public',
+    'storybook:build': 'build-storybook -s public',
   };
 
   fs.writeFileSync(
@@ -122,7 +126,28 @@ module.exports = function(
 
     // inject webpack config
     'rewire',
-    'proxyquire'
+    'proxyquire',
+
+    // other
+    'tslint',
+    'npm-run-all',
+    'rimraf',
+    'cpx',
+
+    // storybook
+    'storybook/addon-actions',
+    '@storybook/addon-centered',
+    '@storybook/addon-info',
+    '@storybook/addon-links',
+    '@storybook/addon-options',
+    '@storybook/addons',
+    '@storybook/react',
+    '@types/storybook__addon-actions',
+    '@types/storybook__addon-info',
+    '@types/storybook__addon-links',
+    '@types/storybook__react',
+    'react-docgen-typescript-loader',
+    'react-docgen-typescript-webpack-plugin',
   ];
 
   console.log(
