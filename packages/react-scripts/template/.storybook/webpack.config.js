@@ -7,10 +7,11 @@ const testPostCssLoaderRx = /\bpostcss-loader\b/
 
 module.exports = (baseConfig, env, config) => {
 
-    
     // add alias
     config.resolve = config.resolve || {}
     config.resolve.alias = config.resolve.alias || {};
+    config.resolve.alias["@node_modules"] = path.resolve(__dirname, "../node_modules");
+    config.resolve.alias["@src"] = path.resolve(__dirname, "../src/");
 
     // CSS MODLUDES
     const cssRule = config.module.rules.find((r) => "" + r.test == testCssRule);
