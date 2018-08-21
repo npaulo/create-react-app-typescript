@@ -54,8 +54,9 @@ module.exports = function(
     test: 'node scripts/customized-config test --env=jsdom',
     lint: 'tslint -p ./ -c ./tslint.json',
     eject: 'react-scripts-ts eject',
-    storybook: 'start-storybook -p 6006 -s public',
-    'storybook:build': 'build-storybook'
+    'storybook': 'npm-run-all lint && start-storybook -p 6006 -s public',
+    'storybook:build': 'npm-run-all storybook:clean build && build-storybook -s public',
+    'storybook:clean': 'rimraf ./storybook-static'
   };
 
   fs.writeFileSync(
