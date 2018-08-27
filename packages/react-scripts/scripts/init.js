@@ -124,7 +124,6 @@ module.exports = function(
     'react-bootstrap',
     'enzyme',
     'enzyme-adapter-react-16',
-    'typesafe-actions',
 
     // inject webpack config
     'rewire',
@@ -135,6 +134,15 @@ module.exports = function(
     'npm-run-all',
     'rimraf',
     'cpx',
+
+    //redux,
+    'redux',
+    'reselect',
+    'typesafe-actions',
+    'rxjs',
+    'redux-observable',
+    'react-router-redux',
+    '@types/react-router-redux',
 
     // storybook
     '@storybook/addon-actions',
