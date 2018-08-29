@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-export interface SFCCounterProps {
+export interface CountersProps {
     label: string;
     count: number;
     onIncrement: () => void;
 }
 
-export const SFCCounter: React.SFC<SFCCounterProps> = (props) => {
+export const Counters: React.SFC<CountersProps> = (props) => {
     const { label, count, onIncrement } = props;
 
     const handleIncrement = () => { onIncrement(); };

@@ -130,6 +130,8 @@ module.exports = function(
     'proxyquire',
 
     // other
+    'lodash',
+    '@types/lodash',
     'tslint',
     'npm-run-all',
     'rimraf',

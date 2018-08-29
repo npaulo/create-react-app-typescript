@@ -5,9 +5,9 @@ import * as Types from 'Types';
 import { createSelector } from 'reselect';
 
 // Select component data from global store state
-export const getCounters = (state: Types.RootState) => state.reduxCounter;
+export const getReduxCounter = (state: Types.RootState) => state.reduxCounter;
 
 // e.g.
-export const getValue = createSelector(getCounters, (counters) => {
+export const getValue = createSelector(getReduxCounter, (counters) => {
     return counters.value;
 });
